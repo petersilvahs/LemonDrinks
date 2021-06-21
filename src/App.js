@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import AboutUs from "./components/AboutUs/AboutUs";
+import AllDrinks from "./components/AllDrinks/AllDrinks";
+import Contact from "./components/Contact/Contact";
+import Footer from "./components/Footer/Footer";
+import GoodDrinks from "./components/GoodDrinks/GoodDrinks";
+import Header from "./components/Header/Header";
+import OurTime from "./components/OurTime/OurTime";
+import PreLoader from "./components/PreLoader/PreLoader";
+
+import "./App.css";
+import "./reset.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const [preLoader, setPreLoader] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setPreLoader(false);
+    }, 1);
+  }, []);
+
+  return preLoader ? (
+    <PreLoader />
+  ) : (
+    <div className="divApp">
+      <Router>
+        <Header />
+        <div className="divAreas">
+          <Switch>
+            <Route path="/AllDrinks">
+              <AllDrinks />
+            </Route>
+            <Route path="/AboutUs">
+              <AboutUs />
+            </Route>
+            <Route exact path="/">
+              <GoodDrinks />
+            </Route>
+            <Route path="/OurTime">
+              <OurTime />
+            </Route>
+            <Route path="/Contact">
+              <Contact />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
+      </Router>
     </div>
   );
 }

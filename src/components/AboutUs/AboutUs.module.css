@@ -1,0 +1,32 @@
+.divAbout {
+  display: grid;
+  grid-template-areas: 
+  "title"
+  "person"
+  "text";
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.divAbout h2{
+  display: grid;
+  justify-content: center;
+  font-size: 30px;
+  
+}
+
+.divAbout img {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-left: 35%;
+  padding: 20px;
+  height: 500px ;
+  width: 500px;
+}
+
+.divAbout p {
+  display: grid;
+  padding: 20px;
+}

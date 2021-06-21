@@ -1,0 +1,66 @@
+.divTime {
+  display: grid;
+  grid-template-areas:
+    "title title title"
+    "person person person"
+    "text text text";
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.divTime h2 {
+  grid-area: title;
+  font-size: 30px;
+  justify-self: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.divTime h3 {
+  font-size: 30px;
+  margin-left: 80px;
+}
+
+.divTime p {
+  grid-area: title;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.imgTime {
+  display: grid;
+  grid-area: person;
+  height: 250px;
+  white-space: 250px;
+}
+
+/*.divTime div {
+  width: fit-content;
+}
+
+.divTime h2 {
+  display: grid;
+  justify-content: center;
+  grid-area: title;
+  font-size: 30px;
+}
+
+.divTime p {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.imgTime {
+  grid-area: person;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  width: 180px;
+}
+
+.pDiv{
+  display: grid;
+  justify-content: center;
+}*/

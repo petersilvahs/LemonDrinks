@@ -1,0 +1,59 @@
+.secContact {
+  text-align: center;
+  margin-top: 55px;
+  padding: 3rem;
+}
+
+.secContact h2 {
+  font-size: 30px;
+}
+
+.divContact {
+  display: grid;
+  grid-template-columns: 3fr 3fr;
+  justify-content: center;
+  align-items: center;
+}
+
+.divContact img {
+  place-self: center;
+  height: 80%;
+  width: 80%;
+}
+
+.divContact form {
+  display: flex;
+  flex-direction: column;
+  place-self: center;
+  text-align: left;
+  margin-top: 3rem;
+}
+
+.divContact label {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.divContact input {
+  font-size: 15px;
+  width: 25rem;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.divContact textarea {
+  height: 5rem;
+  font-size: 13px;
+  resize: none;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.divContact button {
+  align-self: center;
+  min-width: 12rem;
+  min-height: 2rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  font-size: 15px;
+}

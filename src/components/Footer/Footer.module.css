@@ -1,0 +1,13 @@
+.divFooter {
+  grid-area: footer;
+  display: flex;
+  justify-content: center;
+  background-color: #eae0c8;
+}
+
+.divFooter h2{
+  display: grid;
+  min-height: 10px;
+  font-size: 20px;
+  padding: 1em;
+}
