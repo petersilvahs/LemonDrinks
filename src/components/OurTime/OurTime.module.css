@@ -30,7 +30,6 @@
 }
 
 .imgTime {
-  display: grid;
   grid-area: person;
   height: 250px;
   white-space: 250px;

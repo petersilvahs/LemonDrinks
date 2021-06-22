@@ -1,32 +1,39 @@
-import React from "react";
-import style from "./Modal.module.css";
+import React from 'react';
 
-export default function Modal({ openDrinks, closeDrinks }) {
-    console.log(openDrinks);
-    function findIng(drinks) {
-        const drinksIng = Objetic.entries(drinks);
-        return drinksIng.filter(([key, value]) => key.startDrinks("allIngredients") && value && value.trim()).map(([key, value]) => value).join(",")
+import styles from './Modal.module.css';
+
+export default function Modal({ drinkModal, closeModal }) {
+    console.log(drinkModal);
+    function pegaIng(drink) {
+        const drinkIngredientes = Object.entries(drink);
+        return drinkIngredientes
+            .filter(
+                ([key, value]) =>
+                    key.startsWith("strIngredient") && value && value.trim()
+            )
+            .map(([key, value]) => value)
+            .join(", ");
     };
     return (
-        <div id="modal" className={style.modal} onClick={(a) => {
-            if (a.target.className === style.modal) closeDrinks()
+        <div id="myModal" className={styles.modal} onClick={(e) => {
+            if (e.target.className === styles.modal) closeModal()
         }}>
-            <div className={style.modal_content}>
-                <div className={style.modal_header}>
-                    <p class="drinkNome">{openDrinks.strDrink}</p>
-                    <button className={style.close}
+            <div className={styles.modal_content}>
+                <div className={styles.modal_header}>
+                    <p class="drinkNome">{drinkModal.strDrink}</p>
+                    <button className={styles.close}
                         onClick={() => {
-                            closeDrinks()
+                            closeModal()
                         }}>&times;</button>
                 </div>
-                <div className={style.modal_body}>
-                    <img alt="Foto Drink" src={openDrinks.strDrinkThumb} className={styles.modalImg} />
-                    <p>Categoria: {openDrinks.strCategory}</p>
-                    <p>Copo: {openDrinks.strGlass}</p>
-                    <p>Ingredientes: {`${findIng(openDrinks)}`}</p>
+                <div className={styles.modal_body}>
+                    <img alt="Foto Drink" src={drinkModal.strDrinkThumb} className={styles.modalImg} />
+                    <p>Categoria: {drinkModal.strCategory}</p>
+                    <p>Copo: {drinkModal.strGlass}</p>
+                    <p>Ingredientes: {`${pegaIng(drinkModal)}`}</p>
                 </div>
-                <div className={style.modal_footer}>
-                    <p>Instruções: {openDrinks.strInstructions}</p>
+                <div className={styles.modal_footer}>
+                    <p>Instruções: {drinkModal.strInstructions}</p>
                 </div>
             </div>
         </div>

@@ -1,2 +1,22 @@
+.drinksPop {
+  display: grid;
+  grid-template-columns:
+    "title title"
+    "button button";
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  
+}
 
+.drinksPop h2 {
+  font-size: 30px;
+  margin-top: 30px;
+}
 
+.drinksPop button {
+  grid-area: button;
+  margin-top: 30px;
+  justify-content: space-between;
+}

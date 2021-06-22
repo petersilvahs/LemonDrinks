@@ -1,109 +1,116 @@
-/*import React, {useState} from "react";
-import {FoundAll, FoundCat, FoundCatCop, FoundIdDrink} from "../../services/fetch.js";
-import Modal from "../Modal";
+import React, { useState } from 'react'
+import { FoundAllCat, FoundCat, FoundCatCup, FoundDrinkId } from '../../services/fetch';
+import Modal from '../Modal/Modal';
 
-import style from "./FoundDrinks.module.css";
+import styles from '../AllDrinks/FoundDrinks.module.css';
 
-export default function FoundDrinks(){
-    let drinkName =" ";
-    const [data, setData] = useState([]);
-    const [categoria, setCategoria] = useState([]);
-    const [modal, setModal] = useState([]);
-    const [dadosModal, setDadosModal]= useState([]);
+export default function DrinksPesquisa() {
+  let drinkName = '';
+  const [data, setData] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [dadosModal, setDadosModal] = useState({});
 
-    async function drinkId(id){
-        setDadosModal(await FoundIdDrink(id));
+  //modal data search
+
+  async function drinkId(id) {
+    setDadosModal(await FoundDrinkId(id));
+  }
+  function retornaModal() {
+    if (modal) return <Modal drinkModal={dadosModal} closeModal={openModal} />;
+  }
+  function openModal() {
+    setModal(!modal);
+  }
+
+  //search drink by category
+
+  function pegaCategoria(e) {
+    if (e.target.value === 'Alcóolico') {
+      setCategory(['Alcoholic', 'Non Alcoholic']);
+    } else if (e.target.value === 'Category') {
+      setCategory([
+        'Ordinary Drink',
+        'Cocktail',
+        'Cocoa',
+        'Shot',
+        'Milk / Float / Shake',
+        'Other / Unknown',
+        'Coffee / Tea',
+        'Homemade Liqueur',
+        'Punch / Party Drink',
+        'Beer',
+        'Soft Drink / Soda',
+      ]);
+    } else if (e.target.value === 'Copo') {
+      setCategory([
+        'Highball glass',
+        'Cocktail glass',
+        'Old-fashioned glass',
+        'Collins glass',
+      ]);
     }
-    function returnModal(){
-        if(modal) return <Modal drinksModal={dadosModal} closeModal={openModal}/>
+  }
+  async function drinkCategory(e) {
+    let NameCategory = e.target.value;
+    if (NameCategory === 'Alcoholic' || NameCategory === 'Non Alcoholic') {
+      const dados = await FoundAllCat(NameCategory);
+      setData(dados);
     }
-    function openModal(){
-        setModal(!modal);
+    else if (NameCategory === 'Ordinary Drink' || NameCategory === 'Cocktail' || NameCategory === 'Cocoa' || NameCategory === 'Shot' || NameCategory === 'Milk / Float / Shake' || NameCategory === 'Other / Unknown' || NameCategory === 'Coffee / Tea' || NameCategory === 'Homemade Liqueur' || NameCategory === 'Punch / Party Drink' || NameCategory === 'Beer' || NameCategory === 'Soft Drink / Soda') {
+      const dados = await FoundCat(NameCategory);
+      setData(dados);
     }
-
-    function EnvCat(a){
-        if(a.target.value === 'Categoria') {
-            setCategoria([
-              'Ordinary Drink',
-              'Cocktail',
-              'Cocoa',
-              'Shot',
-              'Milk / Float / Shake',
-              'Other / Unknown',
-              'Coffee / Tea',
-              'Homemade Liqueur',
-              'Punch / Party Drink',
-              'Beer',
-              'Soft Drink / Soda',
-            ]);
-          } else if (a.target.value === 'Copo') {
-            setCategoria([
-              'Highball glass',
-              'Cocktail glass',
-              'Old-fashioned glass',
-              'Collins glass',
-            ]);
-          }
-        }
-        async function CatDrink(a) {
-            let nameCategoria = a.target.value;
-            if(nameCategoria === 'Alcoholic' || nameCategoria === 'Non Alcoholic'){
-                const dados = await FoundAll(nameCategoria);
-                setData(dados);
-            }
-            else if(nameCategoria === 'Ordinary Drink' || nameCategoria === 'Cocktail' || nameCategoria === 'Cocoa' || nameCategoria === 'Shot' || nameCategoria === 'Milk / Float / Shake' || nameCategoria === 'Other / Unknown' || nameCategoria === 'Coffee / Tea' || nameCategoria === 'Homemade Liqueur' || nameCategoria === 'Punch / Party Drink' || nameCategoria === 'Beer' || nameCategoria === 'Soft Drink / Soda' ){
-                const dados = await FoundCat(nameCategoria);
-                setData(dados);
-            }
-            else if(nameCategoria === 'Highball glass' || nameCategoria === 'Cocktail glass' || nameCategoria === 'Old-fashioned glass' || nameCategoria === 'Collins glass'){
-                const dados = await FoundCatCop(nameCategoria);
-                setData(dados);
-            }
-        }
-        async function foundDrink(a){
-            a.preventDefault();
-            drinkName= a.target.campName.value;
-            const drinkDado = await fetch(
-                `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`
-            )
-            const response = await drinkDado.json();
-            setData(response.drinks);
-            console.log(data)
-        }
-        return(
-            <div>
-      {returnModal()}
-      <div className={style.divPesquisaNav}>
-        <form onSubmit={foundDrink}>
+    else if (NameCategory === 'Highball glass' || NameCategory === 'Cocktail glass' || NameCategory === 'Old-fashioned glass' || NameCategory === 'Collins glass') {
+      const dados = await FoundCatCup(NameCategory);
+      setData(dados);
+    }
+  }
+  //Found drink at name
+  async function pesquisaDrink(e) {
+    e.preventDefault();
+    drinkName = e.target.campoNome.value;
+    const drinkDado = await fetch(
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`
+    )
+    const response = await drinkDado.json();
+    setData(response.drinks);
+    console.log(data);
+  }
+  return (
+    <div>
+      {retornaModal()}
+      <div className={styles.divResearchNav}>
+        <form onSubmit={pesquisaDrink}>
           <input name="campoNome" placeholder="Digite o nome" />
-          <button className={style.pesquisaBtn}><img alt="Foto Lupa" src="/pesquisa-de-lupa.png" /></button>
+          <button className={styles.researchBtn}>Search</button>
         </form>
-        <select onChange={EnvCat}>
-          <option selected disabled>Selecione</option>
-          <option value="Alcóolico">Alcóolico</option>
-          <option value="Categoria">Categoria</option>
-          <option value="Copo">Copo</option>
+        <select onChange={pegaCategoria}>
+          <option selected disabled>Select</option>
+          <option value="Alcóolico">alcoholic</option>
+          <option value="Categoria">category</option>
+          <option value="Copo">glass</option>
         </select>
-        <select onChange={foundDrink}>
-          <option selected disabled>Selecione</option>
+        <select onChange={drinkCategory}>
+          <option selected disabled>Select</option>
           {
-            categoria.map((categoriaNome, i) => {
+            category.map((categoryName, i) => {
               return (
-                <option key={i}>{categoriaNome}</option>
+                <option key={i}>{categoryName}</option>
               )
             })
           }
         </select>
       </div>
-      <div className={style.divDrinksPesquisa}>
+      <div className={styles.divresearch}>
         {data ? (
           data.map((drink) => {
             return (
-              <div key={drink.idDrink} className={style.drinkDiv}>
-                <p class="drinkNome">{drink.strDrink}</p>
+              <div key={drink.idDrink} className={styles.drinkDiv}>
+                <p class="drinkName">{drink.strDrink}</p>
                 <img
                   alt="Foto Drink"
-                  className={style.drinkImg}
+                  className={styles.drinkImg}
                   src={drink.strDrinkThumb}
                   onClick={() => {
                     openModal()
@@ -115,8 +122,8 @@ export default function FoundDrinks(){
             )
           })
         ) :
-          <img alt="Foto erro 404" src="https://st3.depositphotos.com/1006899/14648/i/600/depositphotos_146482703-stock-photo-robot-holding-the-numbers-404.jpg" />}
+          <img src="/error.png" alt="imagem de erro" className={styles.lastImg} />}
       </div>
     </div>
-        )
-    }*/
+  )
+}

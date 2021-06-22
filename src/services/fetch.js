@@ -1,31 +1,31 @@
-export async function FindSomeDrinks(some) {
+export async function FoundAllCat(categoria) {
   const response = await fetch(
-    `https://thecocktaildb.com/api/json/v1/1/filter.php?a=${some}`
+    `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=${categoria}`
   );
-  const inf = await response.json();
-  return inf.drinks;
+  const dados = await response.json();
+  return dados.drinks;
 }
 
-export async function FindDrinks(some) {
+export async function FoundCat(categoria) {
   const response = await fetch(
-    `https://thecocktaildb.com/api/json/v1/1/filter.php?c=${some}`
+    `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${categoria}`
   );
-  const inf = await response.json();
-  return inf.drinks;
+  const dados = await response.json();
+  return dados.drinks;
 }
 
-export async function FindSomeTypeDrinks(some) {
+export async function FoundCatCup(categoria) {
   const response = await fetch(
-    `https://thecocktaildb.com/api/json/v1/1/filter.php?g=${some}`
+    `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${categoria}`
   );
-  const inf = await response.json();
-  return inf.drinks;
+  const dados = await response.json();
+  return dados.drinks;
 }
 
-export async function SeachDrinks(id) {
+export async function FoundDrinkId(id) {
   const response = await fetch(
-    `https://thecocktaildb.com/api/json/v1/1/filter.php?i=${id}`
+    `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
   );
-  const inf = await response.json();
-  return inf.drinks[0];
+  const dados = await response.json();
+  return dados.drinks[0];
 }

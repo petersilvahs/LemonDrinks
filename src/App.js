@@ -29,7 +29,7 @@ function App() {
         <Header />
         <div className="divAreas">
           <Switch>
-            <Route path="/AllDrinks">
+            <Route path="/allDrinks">
               <AllDrinks />
             </Route>
             <Route path="/AboutUs">

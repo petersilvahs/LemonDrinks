@@ -9,11 +9,10 @@ export default function AllDrinks() {
     return (
         <section className={style.drinksPop}>
             <Router>
-                <h3 className={style.titleDrinks}> <NavLink to="/alldrinks/popdrinks" className={style.titleDrinks}>Drinks</NavLink></h3>
+                <h2 className={style.titleDrinks}>All Drinks</h2>
                 <div className={style.divDrinks}>
                     <div className={style.divNavDrinks}>
-                        <NavLink to="/drinks/popdrinks"><button>Popular Drinks</button></NavLink>
-                        <NavLink to="/drinks/founddrinks"><button>Found Drinks</button></NavLink>
+                        <NavLink to="/drinks/founddrinks" className={style.divButton}><button>Found Drinks</button></NavLink>
                     </div>
                     <div className={style.divContentDrinks}>
                         <Switch>
